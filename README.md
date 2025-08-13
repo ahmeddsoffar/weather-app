@@ -100,7 +100,3 @@ npm run start
 - Weekly forecast view
 - Dark/light theme toggle
 - Unit toggle (°C/°F)
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
