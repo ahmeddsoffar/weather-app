@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Weather App (Next.js + Node API)
 
-## Getting Started
+Modern weather app using Next.js App Router and a Node API route to securely fetch OpenWeather data. Styled with Tailwind (v4) and glassmorphism + subtle animations.
 
-First, run the development server:
+### Features
+
+- Secure server API: `src/app/api/weather/route.ts` proxies OpenWeather (no key in client)
+- Current weather and next 24h forecast (8 x 3h blocks)
+- Enhanced UI (glassmorphism, animated gradient, floating accents)
+- City search with loading states and error handling
+
+### Tech Stack
+
+- Next.js 15 (App Router)
+- React 19
+- Node API route (Edge-compatible fetch)
+- Tailwind CSS 4
+
+### Getting Started
+
+1. Install dependencies
+
+```bash
+cd weather-next
+npm install
+```
+
+2. Configure environment
+   Create `.env.local` in `weather-next/`:
+
+```bash
+OPENWEATHER_API_KEY=YOUR_OPENWEATHER_KEY
+```
+
+3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+weather-next/
+  src/app/
+    api/weather/route.ts   # Server API that fetches current + forecast
+    page.tsx               # Client UI (search, current, hourly)
+    layout.tsx             # Root layout and fonts
+    globals.css            # Tailwind + custom keyframes
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### API Details
 
-## Learn More
+- GET `/api/weather?city={CITY}`
+- Returns `{ current, forecast }` where `forecast.list` is the 3‑hourly array
+- Uses `units=metric` (°C); wind shown in km/h (converted from m/s)
 
-To learn more about Next.js, take a look at the following resources:
+### Build & Run (Production)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+npm run start
+# open http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Deployment
 
-## Deploy on Vercel
+- Vercel recommended. Set `OPENWEATHER_API_KEY` in project environment variables.
+- No additional configuration is required.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Colors are set in `src/app/page.tsx` using your palette: `#F3E2D4`, `#C5B0CD`, `#415E72`, `#17313E`.
+- Animations are defined in `src/app/globals.css` (`float`, `gradientShift`, `sheen`).
+
+### Notes
+
+- If you see hydration warnings in dev, test in a private window or disable extensions. Root layout suppresses extension-induced diffs.
