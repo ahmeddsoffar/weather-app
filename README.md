@@ -1,22 +1,38 @@
-## Weather App (Next.js + Node API)
+# Weather App – Next.js + OpenWeather
 
-Modern weather app using Next.js App Router and a Node API route to securely fetch OpenWeather data. Styled with Tailwind (v4) and glassmorphism + subtle animations.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](LICENSE)
 
-### Features
+> A modern weather application built with Next.js (App Router) and a Node API route that securely fetches data from OpenWeather. Features a polished UI with glassmorphism, animated gradients, and hourly forecast tiles.
 
-- Secure server API: `src/app/api/weather/route.ts` proxies OpenWeather (no key in client)
-- Current weather and next 24h forecast (8 x 3h blocks)
-- Enhanced UI (glassmorphism, animated gradient, floating accents)
-- City search with loading states and error handling
+## Preview
 
-### Tech Stack
+Add a screenshot at `weather-next/public/preview.png` and it will show here:
+
+```weather-next/public/preview.png
+// ... add your preview image here ...
+```
+
+If you deploy, add a link to your live demo here: [Live Demo](https://example.com)
+
+## Features
+
+- Secure server API: `weather-next/src/app/api/weather/route.ts` proxies OpenWeather (your key never reaches the browser)
+- Current conditions with icon, temperature, description, and quick stats (feels like, humidity, wind)
+- Next 24 hours forecast (8 × 3-hour blocks)
+- Refined UI: glassmorphism card, gradient background, subtle motion
+- Tailwind CSS utility styling (v4)
+
+## Tech Stack
 
 - Next.js 15 (App Router)
 - React 19
-- Node API route (Edge-compatible fetch)
 - Tailwind CSS 4
+- Node API route using `fetch`
 
-### Getting Started
+## Getting Started
 
 1. Install dependencies
 
@@ -39,24 +55,27 @@ npm run dev
 # open http://localhost:3000
 ```
 
-### Project Structure
+## Project Structure
 
 ```
-weather-next/
-  src/app/
-    api/weather/route.ts   # Server API that fetches current + forecast
-    page.tsx               # Client UI (search, current, hourly)
-    layout.tsx             # Root layout and fonts
-    globals.css            # Tailwind + custom keyframes
+Weather-App/
+  weather-next/
+    src/app/
+      api/weather/route.ts   # Server API that fetches current + forecast
+      page.tsx               # Client UI (search, current, hourly)
+      layout.tsx             # Root layout and fonts
+      globals.css            # Tailwind + custom keyframes
+    public/                  # Static assets (add preview.png here)
+    package.json             # dev/build/start scripts
 ```
 
-### API Details
+## API Details
 
 - GET `/api/weather?city={CITY}`
-- Returns `{ current, forecast }` where `forecast.list` is the 3‑hourly array
-- Uses `units=metric` (°C); wind shown in km/h (converted from m/s)
+- Response: `{ current, forecast }` where `forecast.list` is the 3‑hourly array
+- Units are metric (°C). Wind shown in km/h (converted from m/s)
 
-### Build & Run (Production)
+## Build & Run (Production)
 
 ```bash
 npm run build
@@ -64,16 +83,24 @@ npm run start
 # open http://localhost:3000
 ```
 
-### Deployment
+## Deployment
 
-- Vercel recommended. Set `OPENWEATHER_API_KEY` in project environment variables.
-- No additional configuration is required.
+- Recommended: [Deploy on Vercel](https://vercel.com/new)
+- Set `OPENWEATHER_API_KEY` as a Project Environment Variable in your host
 
-### Customization
+## Customization
 
-- Colors are set in `src/app/page.tsx` using your palette: `#F3E2D4`, `#C5B0CD`, `#415E72`, `#17313E`.
-- Animations are defined in `src/app/globals.css` (`float`, `gradientShift`, `sheen`).
+- Color palette is set in `page.tsx` using:
+  - `#F3E2D4`, `#C5B0CD`, `#415E72`, `#17313E`
+- Animations are defined in `globals.css` (`float`, `gradientShift`, `sheen`)
 
-### Notes
+## Roadmap
 
-- If you see hydration warnings in dev, test in a private window or disable extensions. Root layout suppresses extension-induced diffs.
+- Geolocation-based default city
+- Weekly forecast view
+- Dark/light theme toggle
+- Unit toggle (°C/°F)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
