@@ -3,7 +3,6 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](LICENSE)
 
 > A modern weather application built with Next.js (App Router) and a Node API route that securely fetches data from OpenWeather. Features a polished UI with glassmorphism, animated gradients, and hourly forecast tiles.
 
